@@ -10,6 +10,6 @@ RSpec.describe Customer, type: :model do
   #end
   it 'Create a Customer' do
     customer = create(:customer)
-    expect(customer.name).to eq("Adelino Masioli")
+    expect(customer.name).to start_with("Sr. ")
   end
 end
