@@ -17,7 +17,7 @@ RSpec.describe Customer, type: :model do
   it 'Create a Customer Attributes_for' do
     attrs = attributes_for(:customer)
     customer = Customer.create(attrs)
-    expect(customer.name).to start_with('Sr. ')
+    expect(customer.full_name).to start_with('Sr. ')
   end
 
   it 'Create a Customer Attributes_transient' do
