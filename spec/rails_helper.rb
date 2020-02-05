@@ -36,6 +36,11 @@ RSpec.configure do |config|
   #FactoryBot
   config.include FactoryBot::Syntax::Methods
 
+  #FactoryBot lint
+  config.before(:suite) do
+    FactoryBot.lint
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
