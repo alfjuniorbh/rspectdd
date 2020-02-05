@@ -19,4 +19,9 @@ RSpec.describe Customer, type: :model do
     customer = Customer.create(attrs)
     expect(customer.name).to start_with('Sr. ')
   end
+
+  it 'Create a Customer Attributes_transient' do
+    customer = create(:customer_default, upcased: true)
+    expect(customer.name.upcase).to eq(customer.name)
+  end
 end
