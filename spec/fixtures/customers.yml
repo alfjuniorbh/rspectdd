@@ -1,3 +1,5 @@
 adelino:
   name: Adelino Masioli
   email: adelinomasioli@gmail.com
+  vip: true
+  days_to_pay: 30
