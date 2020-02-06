@@ -27,7 +27,7 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=dd8b8a96b5a1f50227e53c3f4ce50bff51581016973; expires=Sat, 07-Mar-20
+      - __cfduid=d77f39e3be1f7fbe35c3522b103117b551581016973; expires=Sat, 07-Mar-20
         19:22:53 GMT; path=/; domain=.typicode.com; HttpOnly; SameSite=Lax
       X-Powered-By:
       - Express
@@ -56,7 +56,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 560f7ed38ef5a70b-DUB
+      - 560f7ed59b4ba65d-DUB
     body:
       encoding: ASCII-8BIT
       string: |-
