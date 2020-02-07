@@ -29,8 +29,9 @@ RSpec.describe CustomersController, type: :controller do
     end
 
     it 'Content type' do
+      customer_params = attributes_for(:customer)
       sign_in @member
-      get :show, format: :json, params: { id: @customer.id }
+      post :create, format: :json, params: { customer: customer_params }
       expect(response.content_type).to eq('application/json')
     end
 
@@ -47,6 +48,14 @@ RSpec.describe CustomersController, type: :controller do
       expect {
         post :create, params: { customer: customer_params }
       }.to change(Customer, :count).by(1)
+    end
+
+    it 'invalid attributes' do
+      customer_params = attributes_for(:customer, address: nil)
+      sign_in @member
+      expect {
+        post :create, params: { customer: customer_params }
+      }.not_to change(Customer, :count)
     end
 
     it 'do login and return user' do
