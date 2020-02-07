@@ -32,5 +32,15 @@ RSpec.describe CustomersController, type: :controller do
       get :show, params: { id: customer.id }
       expect(response).to have_http_status(200)
     end
+
+    it 'do login and show template' do
+      member = create(:member)
+      customer = create(:customer)
+  
+      sign_in member
+  
+      get :show, params: { id: customer.id }
+      expect(response).to render_template(:show)
+    end
   end
 end
