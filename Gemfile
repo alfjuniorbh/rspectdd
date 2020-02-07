@@ -47,6 +47,9 @@ group :development, :test do
   gem 'vcr'
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
+  gem 'poltergeist'
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
 group :development do
