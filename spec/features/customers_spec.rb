@@ -13,6 +13,12 @@ RSpec.feature "Customers", type: :feature, js: true do
   expect(page).to have_content('Yes!')
  end
 
+ it 'Find tag Ajax' do
+  visit(customers_path)
+  click_link('Add Message')
+  expect(find('#my-div').find('h2')).to have_content('No!')
+ end
+
  it 'Create a customer' do
   member = create(:member)
   login_as(member, :scope => :member)
