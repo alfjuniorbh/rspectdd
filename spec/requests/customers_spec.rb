@@ -63,6 +63,17 @@ RSpec.describe "Customers", type: :request do
       expect(response).to have_http_status(204)
     end
 
+
+    it "show" do
+      customer  = Customer.first
+
+      get "/customers/#{customer.id}.json"
+      response_body = JSON.parse(response.body)
+      expect(response_body.fetch("id")).to eq(customer.id)
+      expect(response_body.fetch("name")).to eq(customer.name)
+      expect(response_body.fetch("email")).to eq(customer.email)
+    end
+
   end
 end
 
