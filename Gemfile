@@ -50,6 +50,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'poltergeist'
   gem 'phantomjs', :require => 'phantomjs/poltergeist'
+  gem 'rspec-json_expectations'
 end
 
 group :development do
