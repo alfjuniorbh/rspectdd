@@ -10,6 +10,12 @@ feature "Clients", type: :feature do
     visit(root_path)
     click_on('Create new Client')
     expect(page).to have_content('List Clients')
-    #expect(page).to have_link('Create new Client')
+    expect(page).to have_link('Create new Client')
+   end
+
+   scenario 'Verify form Register New Client' do
+    visit(clients_path)
+    click_on('Create new Client')
+    expect(page).to have_content('Create new Client')
    end
 end
