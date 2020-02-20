@@ -6,8 +6,8 @@ feature "Welcome", type: :feature do
    expect(page).to have_content('Welcome')
   end
 
-  scenario 'Verify link Create new Customer' do
+  scenario 'Verify link Create new Client' do
     visit(root_path)
-    expect(find('ul li')).to have_link('Create new Customer')
+    expect(find('ul li')).to have_link('Create new Client')
   end
 end
