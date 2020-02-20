@@ -51,6 +51,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'phantomjs', :require => 'phantomjs/poltergeist'
   gem 'rspec-json_expectations'
+  gem "json_matchers"
 end
 
 group :development do

@@ -3,6 +3,7 @@ require 'webmock/rspec'
 require 'capybara/poltergeist'
 require 'phantomjs'
 require "rspec/json_expectations"
+require "json_matchers/rspec"
 
 #VCR
 VCR.configure do |config|
