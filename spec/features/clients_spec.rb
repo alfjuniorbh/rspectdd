@@ -21,7 +21,16 @@ feature "Clients", type: :feature do
 
    scenario 'Verify Form Register New Client' do
     visit(new_clients_path)
-    click_on('Create new Client')
-    expect(page).to have_content('New Client')
+    client_name = Faker::Name.name
+    
+    fill_in('client_name', with: client_name)
+    fill_in('client_email', with: Faker::Internet.email)
+    fill_in('client_phone', with: Faker::PhoneNumber.phone_number)
+    attach_file('client_avatar', "#{Rails.root}/spec/fixtures/avatar.png")
+    choose(option: ['Y', 'N'].sample)
+    click_on('Save Client')
+
+    expect(page).to have_content('Client registered successful')
+    expect(Client.last.name).to eq(client_name)
    end
 end
