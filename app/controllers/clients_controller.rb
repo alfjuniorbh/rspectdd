@@ -16,7 +16,11 @@ class ClientsController < ApplicationController
     end
   end
 
+  def show
+    @client = Client.last
+  end
+
   def client_params
-    params.require(:client).permit(:id, :name, :email, :smoker, :phone, :avatar)
+    params.require(:post).permit(:id, :name, :email, :smoker, :phone, :avatar)
   end
 end

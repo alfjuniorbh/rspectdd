@@ -3,12 +3,12 @@ require 'rails_helper'
 feature "Clients", type: :feature do
   scenario 'Have link Register New Client' do
     visit(root_path)
-    expect(page).to have_link('Create new Client')
+    expect(page).to have_link('List all Clients')
    end
  
    scenario 'Verify link Register New Client' do
     visit(root_path)
-    click_on('Create new Client')
+    click_on('List all Clients')
     expect(page).to have_content('List Clients')
     expect(page).to have_link('Create new Client')
    end
@@ -20,13 +20,13 @@ feature "Clients", type: :feature do
    end
 
    scenario 'Verify Form Register New Client' do
-    visit(new_clients_path)
+    visit(clients_new_path)
     client_name = Faker::Name.name
     
-    fill_in('client_name', with: client_name)
-    fill_in('client_email', with: Faker::Internet.email)
-    fill_in('client_phone', with: Faker::PhoneNumber.phone_number)
-    attach_file('client_avatar', "#{Rails.root}/spec/fixtures/avatar.png")
+    fill_in('post_name', with: client_name)
+    fill_in('post_email', with: Faker::Internet.email)
+    fill_in('post_phone', with: Faker::PhoneNumber.phone_number)
+    attach_file('post_avatar', "#{Rails.root}/spec/fixtures/avatar.png")
     choose(option: ['Y', 'N'].sample)
     click_on('Save Client')
 
@@ -35,8 +35,20 @@ feature "Clients", type: :feature do
    end
 
    scenario 'Does something' do
-    visit(new_clients_path)
+    visit(clients_new_path)
     click_on('Save Client')
     expect(page).to have_content("Name can't be blank")
+   end
+
+   scenario 'Show client' do
+    client = Client.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.phone_number,
+      smoker: ['Y', 'N'].sample,
+      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
+    )
+    visit(clients_show_path)
+    expect(page).to have_content(client.name)
    end
 end
