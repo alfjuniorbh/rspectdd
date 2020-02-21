@@ -33,4 +33,10 @@ feature "Clients", type: :feature do
     expect(page).to have_content('Client registered successful')
     expect(Client.last.name).to eq(client_name)
    end
+
+   scenario 'Does something' do
+    visit(new_clients_path)
+    click_on('Save Client')
+    expect(page).to have_content("Name can't be blank")
+   end
 end

@@ -23,7 +23,7 @@ module RspecApp
     config.load_defaults 5.1
 
     #i18n pt-BR
-    config.i18n.default_locale = :'pt-BR'
+    #config.i18n.default_locale = :'pt-BR'
 
 
     # Settings in config/environments/* take precedence over those specified here.
