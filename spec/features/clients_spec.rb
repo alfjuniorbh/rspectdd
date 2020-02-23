@@ -48,7 +48,7 @@ feature "Clients", type: :feature do
       smoker: ['Y', 'N'].sample,
       avatar: "#{Rails.root}/spec/fixtures/avatar.png"
     )
-    visit(clients_show_path)
+    visit(clients_show_path(client.id))
     expect(page).to have_content(client.name)
    end
 
@@ -69,5 +69,22 @@ feature "Clients", type: :feature do
     )
     visit(clients_path)
     expect(page).to have_content(client_1.name).and have_content(client_2.name)
+   end
+
+   scenario 'Update client' do
+    client = Client.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.phone_number,
+      smoker: ['Y', 'N'].sample,
+      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
+    )
+    new_name = Faker::Name.name
+    visit(clients_edit_path(client.id))
+    fill_in('patch_name', with: new_name)
+    click_on('Save Client')
+
+    expect(page).to have_content('Customer updated successfull')
+    expect(page).to have_content(new_name)
    end
 end

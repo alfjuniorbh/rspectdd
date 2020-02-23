@@ -1,2 +1,6 @@
+<% if flash[:notice] %>
+ <p><%= flash[:notice] %></p>
+<% end %>
+
 <h1>Show Client</h1>
 <%= @client.name %>
