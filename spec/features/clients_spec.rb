@@ -51,4 +51,23 @@ feature "Clients", type: :feature do
     visit(clients_show_path)
     expect(page).to have_content(client.name)
    end
+
+   scenario 'List all clients' do
+    client_1 = Client.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.phone_number,
+      smoker: ['Y', 'N'].sample,
+      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
+    )
+    client_2 = Client.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.phone_number,
+      smoker: ['Y', 'N'].sample,
+      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
+    )
+    visit(clients_path)
+    expect(page).to have_content(client_1.name).and have_content(client_2.name)
+   end
 end
