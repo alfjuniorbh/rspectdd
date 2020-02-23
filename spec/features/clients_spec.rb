@@ -87,4 +87,30 @@ feature "Clients", type: :feature do
     expect(page).to have_content('Customer updated successfull')
     expect(page).to have_content(new_name)
    end
+
+   scenario 'Click show link' do
+    client = Client.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.phone_number,
+      smoker: ['Y', 'N'].sample,
+      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
+    )
+    visit(clients_path)
+    find(:xpath, "/html/body/table/tbody/tr[1]/td[2]/a").click
+    expect(page).to have_content("Show Client")
+   end
+
+   scenario 'Click edit link' do
+    client = Client.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.phone_number,
+      smoker: ['Y', 'N'].sample,
+      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
+    )
+    visit(clients_path)
+    find(:xpath, "/html/body/table/tbody/tr[1]/td[3]/a").click
+    expect(page).to have_content("Edit Client")
+   end
 end
