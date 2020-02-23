@@ -41,13 +41,7 @@ feature "Clients", type: :feature do
    end
 
    scenario 'Show client' do
-    client = Client.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      smoker: ['Y', 'N'].sample,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
-    )
+    client = create(:client)
     visit(clients_show_path(client.id))
     expect(page).to have_content(client.name)
    end
@@ -72,13 +66,7 @@ feature "Clients", type: :feature do
    end
 
    scenario 'Update client' do
-    client = Client.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      smoker: ['Y', 'N'].sample,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
-    )
+    client = create(:client)
     new_name = Faker::Name.name
     visit(clients_edit_path(client.id))
     fill_in('patch_name', with: new_name)
@@ -89,39 +77,21 @@ feature "Clients", type: :feature do
    end
 
    scenario 'Click show link' do
-    client = Client.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      smoker: ['Y', 'N'].sample,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
-    )
+    client = create(:client)
     visit(clients_path)
     find(:xpath, "/html/body/table/tbody/tr[1]/td[2]/a").click
     expect(page).to have_content("Show Client")
    end
 
    scenario 'Click edit link' do
-    client = Client.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      smoker: ['Y', 'N'].sample,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
-    )
+    client = create(:client)
     visit(clients_path)
     find(:xpath, "/html/body/table/tbody/tr[1]/td[3]/a").click
     expect(page).to have_content("Edit Client")
    end
 
    scenario 'Destroy edit link', js: true do
-    client = Client.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      smoker: ['Y', 'N'].sample,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
-    )
+    client = create(:client)
     visit(clients_path)
     find(:xpath, "/html/body/table/tbody/tr[1]/td[4]/a").click
     1.second
