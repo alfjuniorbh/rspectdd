@@ -113,4 +113,19 @@ feature "Clients", type: :feature do
     find(:xpath, "/html/body/table/tbody/tr[1]/td[3]/a").click
     expect(page).to have_content("Edit Client")
    end
+
+   scenario 'Destroy edit link', js: true do
+    client = Client.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.phone_number,
+      smoker: ['Y', 'N'].sample,
+      avatar: "#{Rails.root}/spec/fixtures/avatar.png"
+    )
+    visit(clients_path)
+    find(:xpath, "/html/body/table/tbody/tr[1]/td[4]/a").click
+    1.second
+    page.driver.browser.window_handles.last
+    expect(page).to have_content("Client deleted successfull")
+   end
 end

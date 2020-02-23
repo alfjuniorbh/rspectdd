@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get 'clients/:id/show', to: 'clients#show', as: 'clients_show'
   get 'clients/:id/edit', to: 'clients#edit', as: 'clients_edit'
   patch 'clients/:id/update', to: 'clients#update', as: 'clients_update'
+  delete 'clients/:id/delete', to: 'clients#destroy', as: 'clients_delete'
 end
